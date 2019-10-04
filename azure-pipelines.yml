@@ -1,0 +1,27 @@
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- task: Npm@1
+  inputs:
+    command: 'install'
+
+- task: Npm@1
+  inputs:
+    command: 'custom'
+    customCommand: 'run build'
+
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'Visual Studio Professional (c56135c8-edd7-4c35-8997-f2a093fd6ade)'
+    appType: 'webAppLinux'
+    WebAppName: 'rom-18-slack'
+    packageForLinux: '$(System.DefaultWorkingDirectory)/build'
