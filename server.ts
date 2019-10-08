@@ -6,6 +6,15 @@ const cors = require('cors');
 import { Response, Request } from 'express';
 require('dotenv').config();
 
+/**
+ * TODO:
+ * Authentication?
+ * images
+ * quotes
+ * trafikk
+ *
+ */
+
 export interface IComic {
 	month: string;
 	num: number;
