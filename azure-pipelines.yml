@@ -8,6 +8,7 @@ steps:
   - task: NodeTool@0
     inputs:
       versionSpec: 10.14.x
+      displayName: install node
 
   - script: npm install
     displayName: npm install
