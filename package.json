@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "nodemon server.ts",
 		"dev": "ts-node-dev --respawn --transpileOnly server.ts",
-		"build": "tsc && node ./dist/server.js",
+		"build": "tsc",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"tsc": "tsc"
 	},
@@ -15,7 +15,6 @@
 		"url": "https://asleberge0499@dev.azure.com/asleberge0499/asleberge/_git/asleberge"
 	},
 	"keywords": [
-		"slack",
 		"node",
 		"express"
 	],
