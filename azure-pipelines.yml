@@ -4,18 +4,10 @@
 trigger:
   - master
 
-pool:
-  vmImage: 'ubuntu-latest'
-
-strategy:
-matrix:
-  node_10_x:
-    node_version: 10.14.x
-
 steps:
   - task: NodeTool@0
     inputs:
-      versionSpec: $(node_version)
+      versionSpec: 10.14.x
 
   - script: npm install
     displayName: npm install
