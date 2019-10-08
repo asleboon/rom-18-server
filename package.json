@@ -1,0 +1,36 @@
+{
+	"name": "rom-18-server",
+	"version": "1.0.0",
+	"description": "Server software for rom-18-dashboard application",
+	"main": "server.ts",
+	"scripts": {
+		"start": "nodemon server.ts",
+		"dev": "ts-node-dev --respawn --transpileOnly server.ts",
+		"prod": "tsc && node ./build/app.js",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"tsc": "tsc"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://asleberge0499@dev.azure.com/asleberge0499/asleberge/_git/asleberge"
+	},
+	"keywords": [
+		"slack",
+		"node",
+		"express"
+	],
+	"author": "Asle Berge",
+	"license": "ISC",
+	"dependencies": {
+		"@types/express": "^4.17.1",
+		"axios": "^0.19.0",
+		"body-parser": "^1.19.0",
+		"cors": "^2.8.5",
+		"dotenv": "^8.1.0",
+		"express": "^4.17.1",
+		"moment": "^2.24.0",
+		"nodemon": "^1.19.3",
+		"ts-node-dev": "^1.0.0-pre.43",
+		"typescript": "^3.6.3"
+	}
+}

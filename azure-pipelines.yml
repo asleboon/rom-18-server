@@ -2,26 +2,19 @@
 # https://aka.ms/yaml
 
 trigger:
-- master
+  - master
 
 pool:
   vmImage: 'ubuntu-latest'
 
+strategy:
+matrix:
+  node_10_x:
+    node_version: 10.14.x
+
 steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
 
-- task: Npm@1
-  inputs:
-    command: 'install'
-
-- task: Npm@1
-  inputs:
-    command: 'custom'
-    customCommand: 'run build'
-
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'Visual Studio Professional (c56135c8-edd7-4c35-8997-f2a093fd6ade)'
-    appType: 'webAppLinux'
-    WebAppName: 'rom-18-slack'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/build'
+  - script: npm install
