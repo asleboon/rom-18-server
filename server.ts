@@ -56,7 +56,7 @@ app.get('/', (req: Request, res: Response) => {
   </style>
   </head>
   <body>
-  <h1>Rom-18-Dashboard API</h1>
+  <h1>Rom-18-dashboard API</h1>
   <table class="table">
       <tr>
         <th>Endepunkt</th>
