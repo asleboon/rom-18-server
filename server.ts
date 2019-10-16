@@ -16,21 +16,21 @@ require('dotenv').config();
  */
 
 export interface IComic {
-	month: string;
-	num: number;
-	link: string;
-	year: string;
-	news: string;
-	safe_title: string;
-	transcript: string;
-	alt: string;
-	img: string;
-	title: string;
-	day: string;
+  month: string;
+  num: number;
+  link: string;
+  year: string;
+  news: string;
+  safe_title: string;
+  transcript: string;
+  alt: string;
+  img: string;
+  title: string;
+  day: string;
 }
 
 export interface Itemp {
-	temp: string;
+  temp: string;
 }
 
 const PORT = process.env.PORT || 4000;
@@ -41,7 +41,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.get('/', (req: Request, res: Response) => {
-	res.send(`
+  res.send(`
   <!DOCTYPE html>
   <html>
   <head>
@@ -90,24 +90,22 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.get('/xkcd', async (req: Request, res: Response) => {
-	try {
-		const newDate = new Date();
-		const randomNumber = Math.round(Math.random() * 90 * newDate.getHours()); // between 0 and 2200
-		const result = await axios.get(
-			`${process.env.XKCD_API}/${randomNumber}/info.0.json`
-		);
-		const comicData: IComic = result.data;
-		return res.status(200).send(comicData);
-	} catch (err) {
-		console.log('err: ', err);
-		return res.status(500).send('Something went wrong :(');
-	}
+  try {
+    const newDate = new Date();
+    const randomNumber = Math.round(Math.random() * 90 * newDate.getHours()); // between 0 and 2200
+    const result = await axios.get(
+      `https://cors-anywhere.herokuapp.com/${process.env.XKCD_API}/${randomNumber}/info.0.json`
+    );
+    const comicData: IComic = result.data;
+    return res.status(200).send(comicData);
+  } catch (err) {
+    console.log('err: ', err);
+    return res.status(500).send('Something went wrong :(');
+  }
 });
 
 app.get('/temp', async (req: Request, res: Response) => {
-	res
-		.status(200)
-		.send({ temp1: req.body, temp2: req.query, temp3: req.params });
+  res.status(200).send({ temp1: req.body, temp2: req.query, temp3: req.params });
 });
 
 app.post('/temp', async (req: Request, res: Response) => {
@@ -117,5 +115,5 @@ app.post('/temp', async (req: Request, res: Response) => {
 });
 
 app.listen(PORT, function() {
-	console.log('Server is listening on ' + PORT);
+  console.log('Server is listening on ' + PORT);
 });
