@@ -110,6 +110,12 @@ app.get('/temp', async (req: Request, res: Response) => {
 		.send({ temp1: req.body, temp2: req.query, temp3: req.params });
 });
 
+app.post('/temp', async (req: Request, res: Response) => {
+	res
+		.status(200)
+		.send({ temp1: req.body, temp2: req.query, temp3: req.params });
+});
+
 app.listen(PORT, function() {
 	console.log('Server is listening on ' + PORT);
 });
