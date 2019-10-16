@@ -73,6 +73,11 @@ app.get('/', (req: Request, res: Response) => {
         <td>IComic</td>
         <td>Xkcd comic</td>
       </tr>
+      <tr>
+        <td>'/temp'</td>
+        <td>Itemp</td>
+        <td>Temperature at the office</td>
+      </tr>
     </thead>
   </table>
   </body>
