@@ -105,20 +105,9 @@ app.get('/xkcd', async (req: Request, res: Response) => {
 });
 
 app.get('/temp', async (req: Request, res: Response) => {
-	console.log('Recieved temperature');
-	console.log('body', req.body);
-	console.log('params', req.params);
-	console.log('query', req.query);
-	res.send(`
-  <div>
-    <h3>
-      Noe noe nyttig her?
-    </h3>
-    <p>${req.body}</p>
-    <p>${req.params}</p>
-    <p>${req.query}</p>
-  </div>
-  `);
+	res
+		.status(200)
+		.send({ temp1: req.body, temp2: req.query, temp3: req.params });
 });
 
 app.listen(PORT, function() {
