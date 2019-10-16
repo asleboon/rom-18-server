@@ -1,0 +1,8 @@
+{
+  "appService.zipIgnorePattern": [
+    "node_modules{,/**}",
+    ".vscode{,/**}"
+  ],
+  "appService.defaultWebAppToDeploy": "/subscriptions/c56135c8-edd7-4c35-8997-f2a093fd6ade/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/rom-18-server",
+  "appService.deploySubpath": ""
+}

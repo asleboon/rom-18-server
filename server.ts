@@ -67,7 +67,7 @@ app.get('/', (req: Request, res: Response) => {
         <td>'/'</td>
         <td>HTML</td>
         <td>Dokumentasjon</td>
-      </tr>
+        expectedArrivalTime      </tr>
       <tr>
         <td>'/xkcd'</td>
         <td>IComic</td>
@@ -93,6 +93,13 @@ app.get('/xkcd', async (req: Request, res: Response) => {
 		console.log('err: ', err);
 		return res.status(500).send('Something went wrong :(');
 	}
+});
+
+app.get('/temp', async (req: Request, res: Response) => {
+	console.log('Recieved temperature');
+	console.log('body', req.body);
+	console.log('params', req.params);
+	console.log('query', req.query);
 });
 
 app.listen(PORT, function() {
