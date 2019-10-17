@@ -93,11 +93,9 @@ app.get('/xkcd', async (req: Request, res: Response) => {
 	try {
 		const newDate = new Date();
 		const randomNumber = Math.round(Math.random() * 90 * newDate.getHours()); // between 0 and 2200
-		console.log(process.env);
 		const result = await axios.get(
 			`${process.env.XKCD_API}/${randomNumber}/info.0.json`
 		);
-		console.log(result.data);
 		const comicData: IComic = result.data;
 		return res.status(200).send(comicData);
 	} catch (err) {
