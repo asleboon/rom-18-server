@@ -125,7 +125,6 @@ app.get('/menu', async (req: Request, res: Response) => {
     const menuFromCache = cache.get('menu');
 
     if (menuFromCache != null) {
-      console.log('menu was in cache');
       return res.status(200).send(menuFromCache);
     }
 
