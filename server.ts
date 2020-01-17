@@ -4,6 +4,7 @@ const bodyParser = require('body-parser');
 const axios = require('axios');
 const cors = require('cors');
 import { Response, Request } from 'express';
+const cache = require('memory-cache');
 require('dotenv').config();
 
 /**
@@ -27,6 +28,16 @@ export interface IComic {
 	img: string;
 	title: string;
 	day: string;
+}
+
+export interface Menu {
+  weekNumber: number;
+  days: Day[];
+}
+
+interface Day {
+  day: string;
+  dishes: string[];
 }
 
 export interface Itemp {
@@ -82,6 +93,11 @@ app.get('/', (req: Request, res: Response) => {
         <td>Itemp</td>
         <td>Temperature at the office</td>
       </tr>
+      <tr>
+        <td>'/menu'</td>
+        <td>IMenu</td>
+        <td>Menu in the cantina</td>
+      </tr>
     </thead>
   </table>
   </body>
@@ -102,6 +118,29 @@ app.get('/xkcd', async (req: Request, res: Response) => {
 		console.log('err: ', err);
 		return res.status(500).send('Something went wrong :(');
 	}
+});
+
+app.get('/menu', async (req: Request, res: Response) => {
+  try {
+    const menuFromCache = cache.get('menu');
+
+    if (menuFromCache != null) {
+      return res.status(200).send(menuFromCache);
+    }
+
+    var config = {
+      headers: {'Access-Control-Allow-Origin': '*'}
+    };
+    const result = await axios.get('https://ot-lunch.azurewebsites.net/menu', config);
+    const menu: Menu = result.data;
+
+    cache.put('menu', menu, 86400000);
+
+    return res.status(200).send(menu);
+  } catch (err) {
+    console.log('err: ', err);
+    return res.status(500).send('Could not fetch menu');
+  }
 });
 
 app.get('/temp', async (req: Request, res: Response) => {
